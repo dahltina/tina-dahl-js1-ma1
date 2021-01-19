@@ -26,52 +26,63 @@ cat.complain();
 const heading = document.querySelector("h3");
 heading.innerHTML = "Updated heading";
 
+
 // Question 3:
-// Use the style property on the heading variable from the question above to change its font size to "2em".
+heading.style.fontSize = "2em";
 
 
 // Question 4:
-// Add a class to the heading variable called subheading.
+heading.classList.add("subheading");
 
 
 // Question 5:
-// Write code that selects all the p elements on a page and assigns them to a variable called paragraphs.
+const paragraphs = document.querySelectorAll("p");
 
-// Loop through the p elements and change the colour of each to "red".
+for (let i = 0; i < paragraphs.length; i++) {
+    paragraphs[i].style.color = "red";
+}
 
 
 // Question 6:
-// Select the div with a class of results, assign it to a variable called resultsContainer and set its inner HTML to be <p>New paragraph</p> and its background colour to be yellow.
+const resultsContainer = document.querySelector(".results");
+resultsContainer.innerHTML = `<p>New paragraph</p>`;
+resultsContainer.style.backgroundColor = "yellow";
 
 
 // Question 7:
-// Create a function that has one parameter called list.
+function listOfCats(list) {
+    for (let i = 0; i < list.length; i++) {
+        console.log(list[i].name);
+    }
+}
 
-// Inside the function, loop through the list parameter and console log the name property in each object.
-
-// Call the function and pass in the cats variable in the script.js file in the repo.
+listOfCats(cats);
 
 
 // Question 8:
-// Create a function called createCats. The function will have one parameter called cats.
+function createCats(cats) {
 
-// Inside the function loop through the value passed in as cats and create HTML for each object in the array.
+    let html = "";
 
-// Wrap each item in a div, each name property in an h5 tag and each age property in a p tag.
+    for (i = 0; i < cats.length; i++) {
 
-// If the age property is missing, it should display “Age unknown” instead.
+        let catsAge = "Age unknown";
 
-// Return the HTML from the function.
+        if (cats[i].age) {
+            catsAge = cats[i].age;
+        }
 
-// Call the function and pass in the cats array as the argument.
+        html += `<div>
+                    <h5>${cats[i].name}</h5>
+                    <p>Age: ${catsAge}</p>
+                </div>`;
+    }
 
-// Assign the return value of the function to the innerHTML property of the element on the HTML page with a class of cat-container.
+    return html;
+}
 
+const newHTML = createCats(cats);
 
-// Submission
+const catContainer = document.querySelector(".cat-container");
+catContainer.innerHTML = newHTML;
 
-// Create a repository in your GitHub account called your-name-js1-ma1, for example mary-smith-js1-ma1, and make sure it's public.
-// All your answers can go in script.js.
-// Place a comment above each answer indicating the question number.
-// Add, commit and push this file to your repo.
-// Submit the repo link.
